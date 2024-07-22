@@ -24,7 +24,7 @@ HELM_TGZ=$(ls $HELM_TMP_DIR/*.tgz)
 
 echo "-- Reading helmchart: $HELM_TGZ"
 
-IMAGES=$(helm template chart $HELM_TGZ | awk '$1 ~ /image:/ {print $2}' | sed -e 's/\"//g')
+IMAGES=$(helm template chart $HELM_TGZ | awk '$1 ~ /image:/ {print $2}' | sed -e 's/\"//g' | sed -e "s/'//g")
 
 echo "-- Save list to file: $OUTPUT_FOLDER/$IMAGES_LIST"
 rm -f $OUTPUT_FOLDER/$IMAGES_LIST
